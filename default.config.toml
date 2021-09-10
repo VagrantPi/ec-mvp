@@ -1,0 +1,25 @@
+[base]
+# debug, info, error, and fatal
+logLevel = "debug"
+passwordSalt = ""
+defaultAdminUUID = "a8fc015b-254f-423b-b664-e9b68850b77f"
+
+[jwt]
+secret = ""
+expiresIn = 604800 # 7 * 24 * 60 * 60 (expires in 7 Day)
+
+[database]
+protocol = "postgres"
+host = "ec-mvp"
+port = "5432"
+user = "test"
+password = "test"
+dbName = "ec-db"
+logging = false
+autoReconnect = true
+ormEnable = true
+  [database.dialectOptions]
+  connectTimeout = 3000
+
+  [database.pool]
+  max = 100

@@ -1,0 +1,35 @@
+{
+  "name": "ec-mvp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "lint": "eslint lib/*.js",
+    "migrateDB": "./node_modules/.bin/sequelize db:migrate --env development --config ./env.js --migrations-path ./db/migrations --models-path ./db/models"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
+    "koa-helmet": "^6.1.0",
+    "koa-router": "^10.0.0",
+    "log4js": "^6.3.0",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.6.5",
+    "toml": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.25.1",
+    "sequelize-cli": "^6.2.0"
+  }
+}
