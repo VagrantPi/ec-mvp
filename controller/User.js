@@ -48,7 +48,6 @@ class User {
       const validPassword = Utils.verifyPassword(password, this.config.base.passwordSalt, findAdmin.password)
       if (!validPassword) {
         ctx.body = new ResponseFormat({ codesKey: 'InvalidAccountOrPassword' })
-
         return
       }
 
