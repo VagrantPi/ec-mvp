@@ -26,6 +26,53 @@ class User {
     }
   }
 
+  /**
+   * @swagger
+   * definitions:
+   *   authResponse:
+   *     type: object
+   *     properties:
+   *       success:
+   *         type: string
+   *       code:
+   *         type: string
+   *       message:
+   *         type: string
+   *       data:
+   *         type: object
+   *         properties:
+   *           account:
+   *             type: string
+   *           name:
+   *             type: string
+   *
+   * /auth/login:
+   *   post:
+   *     tags:
+   *       - User
+   *     produces:
+   *       - application/json
+   * 
+   *     description: Login 用戶登入系統並在Response Header Authorization取得token
+   *     parameters:
+   *       - name: account
+   *         in: formData
+   *         required: true
+   *         type: string
+   *         description: 使用者帳號
+   *       - name: password
+   *         in: formData
+   *         required: true
+   *         type: string
+   *         description: 使用者密碼
+   *     responses:
+   *       200:
+   *         description: OK
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/definitions/authResponse'
+   */
   async LoginUser(ctx) {
     try {
       this.logger.debug('LoginUser api')

@@ -1,26 +1,26 @@
 version: "3.0"
 
 services:
-  # ec-mvp:
-  #   container_name: ec-mvp
-  #   depends_on:
-  #     - ec-db
-  #   build:
-  #     context: ../
-  #     dockerfile: docker/Dockerfile
-  #   image: ec-mvp:latest
-  #   hostname: ec-mvp
-  #   ports:
-  #     - "3000:3000"
-  #   restart: always
+  ec-mvp:
+    container_name: ec-mvp
+    depends_on:
+      - ec-db
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    image: ec-mvp:latest
+    hostname: ec-mvp
+    ports:
+      - "3000:3000"
+    restart: always
   ec-db:
     container_name: ec-db
     image: postgres:13.4
     volumes:
       - ./dbData:/var/lib/postgresql/data
     # for debug
-    ports:
-      - "5432:5432"
+    # ports:
+    #   - "5432:5432"
     environment:
       POSTGRES_DB: "${POSTGRES_DB}"
       POSTGRES_USER: "${POSTGRES_USER}"

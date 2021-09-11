@@ -10,6 +10,54 @@ class User {
     this.db = db;
   }
 
+  /**
+   * @swagger
+   * 
+   * definitions:
+   *   addGoodsResponse:
+   *     type: object
+   *     properties:
+   *       success:
+   *         type: string
+   *       code:
+   *         type: string
+   *       message:
+   *         type: string
+   *       data:
+   *         type: object
+   *         properties:
+   *           _id:
+   *             type: string
+   *           goods_name:
+   *             type: string
+   *
+   * /goods/add:
+   *   post:
+   *     tags:
+   *       - Goods
+   *     produces:
+   *       - application/json
+   * 
+   *     description: 新增商品
+   *     parameters:
+   *       - name: goods_name
+   *         in: formData
+   *         required: true
+   *         type: string
+   *         description: 商品名稱
+   *       - name: Authorization
+   *         in: header
+   *         required: true
+   *         type: string
+   *         description: Token
+   *     responses:
+   *       200:
+   *         description: OK
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/definitions/addGoodsResponse'
+   */
   async AddGoods(ctx) {
     try {
       this.logger.debug('AddGoods api')
@@ -39,6 +87,57 @@ class User {
     }
   }
 
+
+  /**
+   * @swagger
+   * 
+   * components:
+   *   schemas:
+   *     goodsItem:
+   *       type: object
+   *       properties:
+   *         _id:
+   *           type: string
+   *         goods_name:
+   *           type: string
+   * 
+   * definitions:
+   *   listGoodsResponse:
+   *     type: object
+   *     properties:
+   *       success:
+   *         type: string
+   *       code:
+   *         type: string
+   *       message:
+   *         type: string
+   *       data:
+   *         type: array
+   *         items:
+   *           $ref: '#/components/schemas/goodsItem'
+   *
+   * /goods:
+   *   get:
+   *     tags:
+   *       - Goods
+   *     produces:
+   *       - application/json
+   * 
+   *     description: 取得所有商品
+   *     parameters:
+   *       - name: Authorization
+   *         in: header
+   *         required: true
+   *         type: string
+   *         description: Token
+   *     responses:
+   *       200:
+   *         description: OK
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/definitions/listGoodsResponse'
+   */
   async ListGoods(ctx) {
     try {
       this.logger.debug('ListGoods api')
@@ -61,6 +160,50 @@ class User {
     }
   }
 
+  /**
+   * @swagger
+   * 
+   * definitions:
+   *   findGoodsResponse:
+   *     type: object
+   *     properties:
+   *       success:
+   *         type: string
+   *       code:
+   *         type: string
+   *       message:
+   *         type: string
+   *       data:
+   *         type: object
+   *         $ref: '#/components/schemas/goodsItem'
+   * 
+   * /goods/{id}:
+   *   get:
+   *     tags:
+   *       - Goods
+   *     produces:
+   *       - application/json
+   * 
+   *     description: 取得指定商品
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         required: true
+   *         type: string
+   *         description: 商品代號
+   *       - name: Authorization
+   *         in: header
+   *         required: true
+   *         type: string
+   *         description: Token
+   *     responses:
+   *       200:
+   *         description: OK
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/definitions/findGoodsResponse'
+   */
   async FindGoods(ctx) {
     try {
       this.logger.debug('FindGoods api')
@@ -90,6 +233,57 @@ class User {
     }
   }
 
+  /**
+   * @swagger
+   * 
+   * definitions:
+   *   updateGoodsResponse:
+   *     type: object
+   *     properties:
+   *       success:
+   *         type: string
+   *       code:
+   *         type: string
+   *       message:
+   *         type: string
+   *       data:
+   *         type: object
+   *         properties:
+   *           goods_name:
+   *             type: string
+   * 
+   * /goods/{id}:
+   *   put:
+   *     tags:
+   *       - Goods
+   *     produces:
+   *       - application/json
+   * 
+   *     description: 更新商品
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         required: true
+   *         type: string
+   *         description: 商品代號
+   *       - name: Authorization
+   *         in: header
+   *         required: true
+   *         type: string
+   *         description: Token
+   *       - name: goods_name
+   *         in: formData
+   *         required: true
+   *         type: string
+   *         description: 商品名稱
+   *     responses:
+   *       200:
+   *         description: OK
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/definitions/updateGoodsResponse'
+   */
   async UpdateGoods(ctx) {
     try {
       this.logger.debug('UpdateGoods api')
@@ -128,6 +322,50 @@ class User {
     }
   }
 
+
+  /**
+   * @swagger
+   * 
+   * definitions:
+   *   deleteGoodsResponse:
+   *     type: object
+   *     properties:
+   *       success:
+   *         type: string
+   *       code:
+   *         type: string
+   *       message:
+   *         type: string
+   *       data:
+   *         type: object
+   * 
+   * /goods/{id}:
+   *   delete:
+   *     tags:
+   *       - Goods
+   *     produces:
+   *       - application/json
+   * 
+   *     description: 刪除商品
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         required: true
+   *         type: string
+   *         description: 商品代號
+   *       - name: Authorization
+   *         in: header
+   *         required: true
+   *         type: string
+   *         description: Token
+   *     responses:
+   *       200:
+   *         description: OK
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/definitions/deleteGoodsResponse'
+   */
   async DeleteGoods(ctx) {
     try {
       this.logger.debug('DeleteGoods api')
